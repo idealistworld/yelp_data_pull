@@ -68,7 +68,6 @@ for link in dataToScrape:
         businessSite = html.text[html.text.index(
             '<p class=" css-na3oda">Business website</p>')+350:html.text.index('<p class=" css-na3oda">Business website</p>')+550]
         businessSite = businessSite[businessSite.index('role="link">') + 12:businessSite.index('</a></p></div><div')]
-        print(businessSite)
     except Exception as e:
         businessSite = "N/A"
 
