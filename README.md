@@ -5,4 +5,4 @@
 3. Name the CSV "yelp_link_list.csv"
 4. Run the script
 5. Will output a CSV containing:
-Business Name | Yelp URL | Google Review URL | Average Rating | Total Ratings | Address | Mailing Address
+Business Name | Yelp URL | Google Review URL | Average Rating | Total Ratings | Address | Mailing Address | Phone Number | Business Site
