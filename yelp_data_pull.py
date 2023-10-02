@@ -55,6 +55,23 @@ for link in dataToScrape:
     except Exception as e:
         address = "N/A"
 
+
+    # Get Phone Number
+    try:
+        phoneNumber = html.text[html.text.index(
+            '<p class=" css-na3oda">Phone number</p>')+91:html.text.index('<p class=" css-na3oda">Phone number</p>')+105]
+    except Exception as e:
+        phoneNumber = "N/A"
+
+    # Get Business Site
+    try:
+        businessSite = html.text[html.text.index(
+            '<p class=" css-na3oda">Business website</p>')+350:html.text.index('<p class=" css-na3oda">Business website</p>')+550]
+        businessSite = businessSite[businessSite.index('role="link">') + 12:businessSite.index('</a></p></div><div')]
+        print(businessSite)
+    except Exception as e:
+        businessSite = "N/A"
+
     # Get Google Review Link
     try:
         googleReviewLink = 'https://www.google.com/search?q=' + \
@@ -66,16 +83,15 @@ for link in dataToScrape:
     shippingAddress = businessName + "\n" + streetAddress + "\n" + cityInformation
 
     dataToImport = [businessName, url, googleReviewLink,
-                    averageRating, totalRatings, address, shippingAddress]
+                    averageRating, totalRatings, address, shippingAddress, phoneNumber, businessSite]
 
-    print(dataToImport)
 
     collectedAndFormattedData.append(dataToImport)
 
 with open("business_data.csv", 'w') as csvfile:
     csvwriter = csv.writer(csvfile)
     fields = ['BusinessName', 'Yelp URL', 'Google Review Link',
-              'Average Rating', 'Total Ratings', 'Address']
+              'Average Rating', 'Total Ratings', 'Address', 'Shipping Address', 'Phone Number', 'Business Site']
     csvwriter.writerow(fields)
     for dataSet in collectedAndFormattedData:
         csvwriter.writerow(dataSet)
